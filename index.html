@@ -12,10 +12,10 @@ body {
   font-family: Arial, sans-serif;
 }
 
-/* Center text */
+/* Main text */
 .love-text {
   position: absolute;
-  top: 40%;
+  top: 38%;
   width: 100%;
   text-align: center;
   font-size: 2.5rem;
@@ -24,12 +24,29 @@ body {
   animation: glow 2s infinite alternate;
 }
 
+/* Kiss text */
+.kiss-text {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  font-size: 2rem;
+  color: #ff66b3;
+  text-shadow: 0 0 15px #ff4da6;
+  animation: fadeIn 3s infinite alternate;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0.4; }
+  to { opacity: 1; }
+}
+
 @keyframes glow {
   from { text-shadow: 0 0 10px #ff4da6; }
   to { text-shadow: 0 0 30px #ff1a8c, 0 0 60px #ff66b3; }
 }
 
-/* Heart shape */
+/* Heart */
 .heart {
   position: absolute;
   width: 20px;
@@ -49,26 +66,24 @@ body {
   border-radius: 50%;
 }
 
-.heart::before {
-  top: -10px;
-  left: 0;
+.heart::before { top: -10px; left: 0; }
+.heart::after { left: -10px; top: 0; }
+
+/* Kiss emoji animation */
+.kiss {
+  position: absolute;
+  font-size: 24px;
+  animation: floatKiss 6s linear infinite;
 }
 
-.heart::after {
-  left: -10px;
-  top: 0;
-}
-
-/* Floating animation */
 @keyframes float {
-  0% {
-    transform: translateY(100vh) rotate(45deg);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-10vh) rotate(45deg);
-    opacity: 0;
-  }
+  0% { transform: translateY(100vh) rotate(45deg); opacity: 1; }
+  100% { transform: translateY(-10vh) rotate(45deg); opacity: 0; }
+}
+
+@keyframes floatKiss {
+  0% { transform: translateY(100vh); opacity: 1; }
+  100% { transform: translateY(-10vh); opacity: 0; }
 }
 </style>
 </head>
@@ -76,9 +91,10 @@ body {
 <body>
 
 <div class="love-text">Love You Bachaaa 💗</div>
+<div class="kiss-text">Muuwwaaahhh 💗💗😘😘</div>
 
-<!-- Hearts -->
 <script>
+// Hearts
 for (let i = 0; i < 30; i++) {
   let heart = document.createElement("div");
   heart.className = "heart";
@@ -89,6 +105,18 @@ for (let i = 0; i < 30; i++) {
   heart.style.transform = "scale(" + (0.5 + Math.random()) + ") rotate(45deg)";
   
   document.body.appendChild(heart);
+}
+
+// Kiss emojis
+for (let i = 0; i < 15; i++) {
+  let kiss = document.createElement("div");
+  kiss.className = "kiss";
+  kiss.innerHTML = "😘";
+  
+  kiss.style.left = Math.random() * 100 + "vw";
+  kiss.style.animationDuration = (4 + Math.random() * 4) + "s";
+  
+  document.body.appendChild(kiss);
 }
 </script>
 
